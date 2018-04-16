@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<pthread.h>
 #include<stdlib.h>
-void faculty();
-void staff();
-void student();
+void *faculty();
+void *staff();
+void *student();
 int main()
 {
 pthread_t t1;
@@ -43,7 +43,7 @@ void *student()
 	float t;
 	printf("Enter the current Time in 24 hour foramat\n");
 	scanf("%d",&t);
-	if((t>=15 && t<=24)||(t>=1&&t<=8))
+	if((t>=22 && t<=24)||(t>=1&&t<=6))
 	{
 		printf("Yoy can Play the Game\n");
 	}
@@ -55,10 +55,5 @@ void *staff()
 	int t;
 	printf("Enter the current Time in 24 hour foramat\n");
 	scanf("%d",&t);
-	if((t>=15 && t<=24)||(t>=1&&t<=8))
-	{
-		printf("Yoy can Play the Game\n");
-	}
-	else
-	printf("Sorry you cannot play the game\n");	
+	printf("Yoy can Play the Game\n");
 }
