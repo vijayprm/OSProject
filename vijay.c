@@ -1,33 +1,64 @@
 #include<stdio.h>
-#include<time.h>
+#include<pthread.h>
+#include<stdlib.h>
 void faculty();
 void staff();
 void student();
 int main()
 {
+pthread_t t1;
 int ch;
 printf("Welcome to Game Scheduler\n");
 printf("Who Are You ???????\n");
-time_t curtime;
-struct tm *loc_time;
-char buf[150];
-curtime = time (NULL);
-loc_time = localtime (&curtime);
-strftime (buf, 150, "%I\n", loc_time);
-printf("%d",buf);
 printf("1. Faculty\n2. Student\n3. Computer Centre Staffs\n");
 scanf("%d",&ch);
 switch(ch)
 {
-case 1: faculty();
+case 1: pthread_create(&t1,NULL,faculty,NULL);
         break;
-case 2: student();
+case 2: pthread_create(&t1,NULL,student,NULL);
         break;
-case 3: staff()
+case 3: pthread_create(&t1,NULL,staff,NULL);
         break;
 case 4: exit(0);
 default: printf("Invalid choice\n");        
 }
+pthread_join(t1,NULL);
+return 0;
 }
-
-
+void *faculty()
+{
+	int t;
+	printf("Enter the current Time in 24 hour foramat\n");
+	scanf("%d",&t);
+	if((t>=15 && t<=24)||(t>=1&&t<=8))
+	{
+		printf("Yoy can Play the Game\n");
+	}
+	else
+	printf("Sorry you cannot play the game\n");	
+}
+void *student()
+{
+	float t;
+	printf("Enter the current Time in 24 hour foramat\n");
+	scanf("%d",&t);
+	if((t>=15 && t<=24)||(t>=1&&t<=8))
+	{
+		printf("Yoy can Play the Game\n");
+	}
+	else
+	printf("Sorry you cannot play the game\n");	
+}
+void *staff()
+{
+	int t;
+	printf("Enter the current Time in 24 hour foramat\n");
+	scanf("%d",&t);
+	if((t>=15 && t<=24)||(t>=1&&t<=8))
+	{
+		printf("Yoy can Play the Game\n");
+	}
+	else
+	printf("Sorry you cannot play the game\n");	
+}
